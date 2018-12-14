@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     console.log("Connected as id: " + connection.threadId);
     chooseMenu();
-})
+});
 
 var chooseMenu = function () {
     inquirer
@@ -95,7 +95,7 @@ function viewLowInventory() {
                 "Stock:      " + result[i].stock_quantity));
         }
         chooseMenu();
-    })
+    });
 }
 
 // add New Product
@@ -136,8 +136,8 @@ function addNewProduct() {
                         "Department: " + answer.department_name + "\n" +
                         "Stock:      " + answer.quantity + "\n"));
                     chooseMenu();
-                })
-        })
+                });
+        });
 }
 
 //Add inventory
@@ -168,10 +168,9 @@ function AddInventory() {
                             console.log(colors.green("\nBook Name:" + res[0].product_name + "\n" +
                                 "Stock    :" + newQuantity + "\n"));
                             chooseMenu();
-                        })
-
-                })
-        })
+                        });
+                });
+        });
 }
 
 //Delete inventory
@@ -197,7 +196,7 @@ function deleteProduct() {
                     console.log(colors.magenta("\n Your book has been deleted.\n"));
                     chooseMenu();
                 })
-        })
+        });
 }
 
 //Exit the manager's view

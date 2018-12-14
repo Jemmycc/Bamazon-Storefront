@@ -2,7 +2,6 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 var colors = require("colors");
 
-
 //set the connection for database
 var connection = mysql.createConnection({
     host: "localhost",
@@ -16,8 +15,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     console.log("Connected as id: " + connection.threadId);
     itemsForSale();
-})
-
+});
 
 //items available for sale
 function itemsForSale() {
@@ -25,7 +23,6 @@ function itemsForSale() {
         if (err) throw err;
 
         for (var i = 0; i < result.length; i++) {
-
             console.log("\nBook ID:    " + result[i].item_id.toString() + "\n" +
                 "Book Name:  " + result[i].product_name + "\n" +
                 "Book Price: " + parseInt(result[i].price).toFixed(2) + "\n" +
@@ -34,7 +31,6 @@ function itemsForSale() {
         chooseItems();
     });
 }
-
 
 // sets function for cutomer to make a purchase
 // list of items id's as an array and passed to the promt/choices
@@ -45,7 +41,6 @@ function chooseItems() {
                 type: "input",
                 name: "buy",
                 message: colors.cyan("Please indicate the ID of the books that you would like to purchase?"),
-
             },
             {
                 type: "input",
@@ -60,9 +55,8 @@ function chooseItems() {
 
                 checkStock(res[0].stock_quantity, answer.quantity, res[0].price.toFixed(2), res[0].item_id);
             });
-        })
+        });
 }
-
 
 //check quantity against the stock
 function checkStock(in_stock, buy_quantity, price, item_id) {
@@ -88,7 +82,6 @@ function updateSales(total_price, item_id) {
             // console.log(colors.yellow("Database was successfully updated!"));
             console.log(colors.magenta(res.affectedRows + " product sales updated!\n"));
         });
-
 }
 
 //update stock_quantity
@@ -124,4 +117,3 @@ function updateStock(quantity, item_id) {
                 "Stock:      " + result[0].stock_quantity);
         });
 }
-

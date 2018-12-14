@@ -16,13 +16,10 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     console.log("Connected as id: " + connection.threadId);
     viewProductSaleByDept();
-})
-
-
+});
 
 //view Product Sales by Department
 function viewProductSaleByDept() {
-
     // console.log("Inserting a new product...\n");
     var query = "SELECT departments.department_id, products.department_name, departments.over_head_costs, SUM(products.product_sales) AS total_sales FROM products LEFT JOIN departments ON (departments.department_name = products.department_name) GROUP BY department_name ORDER BY departments.department_id";
 
@@ -39,9 +36,5 @@ function viewProductSaleByDept() {
             table.push(outArray);
         }
         console.log(table.toString());
-
-    })
+    });
 }
-
-
-
